@@ -1,0 +1,58 @@
+name: CustomInventories
+version: ${project.version}
+main: me.wiviw.custominventories.CustomInventories
+load: STARTUP
+depend: [BountifulAPI]
+authors: [WiViW]
+description: Custom Inventories and other fun features.
+commands:
+  gm:
+    description: Toggles your gamemode between the two main ones.
+  gms:
+    description: Sets your gamemode to Survival.
+  gmc:
+    description: Sets your gamemode to Creative.
+  gmss:
+    description: Sets your gamemode to Spectator.
+  gma:
+    description: Sets your gamemode to Adventure.
+  returntext:
+    description: Returns Text to only yourself.
+  returntextall:
+    description: Returns Text to everyone.
+  rename:
+    description: Renames an item.
+  relore:
+    description: Relores an item.
+  exunbreaking:
+    description: Toggles on and off Unbreakable.
+  exhideenchants:
+    description: Toggles on and off Enchantments.
+  exhideunbreakable:
+    description: Toggles on and off Unbreakable tag.
+  exhideattributes:
+    description: Toggles on and off Attributes.
+  exhideplacedon:
+    description: Toggles on and off Place On.
+  exhidedestroys:
+    description: Toggles on and off Destroys.
+  exhidepotions:
+    description: Toggles on and off Potions.
+  particletrails:
+    description: Particle Trails.
+  entitysetup:
+    description: Setup defined by a config file.
+  entitysaving:
+    description: Saving entities into a config file
+  entitytesting:
+    description: Some testing command, shouldn't be in release
+  colorleather:
+    description: Colors leather armor.
+  sethealth:
+    description: Sets your Health.
+  setname:
+    description: Sets your display name
+  nick:
+    description: Nicks
+  inventory:
+    description: Opens an Inventory
