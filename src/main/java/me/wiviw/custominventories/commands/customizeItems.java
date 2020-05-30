@@ -313,6 +313,10 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                 }
                 break;
             case "glowing":
+                if (!item.hasItemMeta()){
+                    p.sendMessage(ChatColor.RED + "[CI] You must add lore or change the name to have it glow.");
+                    return true;
+                }
                 Glow glow = new Glow();
                 meta.addEnchant(glow,1,true);
                 item.setItemMeta(meta);
