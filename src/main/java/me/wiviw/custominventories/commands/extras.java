@@ -21,6 +21,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -302,8 +303,8 @@ public class extras implements CommandExecutor {
                 SBinv.append(" ");
             }
             String InvName = ChatColor.translateAlternateColorCodes('&', String.valueOf(SBinv)).trim();
-            InventoryHelper Pit = new InventoryHelper(p, size, ChatColor.translateAlternateColorCodes('&',InvName));
-            Pit.openInventory(p);
+            Inventory inv = Bukkit.createInventory(p, size, ChatColor.translateAlternateColorCodes('&',InvName));
+            p.openInventory(inv);
             break;
         case "title":
             if (!(args.length>1)) {

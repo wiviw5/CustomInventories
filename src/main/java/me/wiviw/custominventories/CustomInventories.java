@@ -35,6 +35,7 @@ public final class CustomInventories extends JavaPlugin {
         getCommand("gms").setExecutor(new gamemode());
         getCommand("gmc").setExecutor(new gamemode());
         getCommand("gmss").setExecutor(new gamemode());
+        getCommand("gma").setExecutor(new gamemode());
         getCommand("returntext").setExecutor(new textreturn());
         getCommand("returntextall").setExecutor(new textreturn());
         getCommand("rename").setExecutor(new itemdependants());
