@@ -3,6 +3,7 @@ package me.wiviw.custominventories.commands;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTCompoundList;
 import de.tr7zw.nbtapi.NBTItem;
+import me.wiviw.custominventories.Glow;
 import net.md_5.bungee.api.chat.*;
 
 import java.util.ArrayList;
@@ -36,11 +37,12 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
             return true;
         } //Todo Update Op Check format
         Player p = (Player) sender;
-        if (p.getInventory().getItemInHand().getType() == Material.AIR) {
+        ItemStack item = p.getInventory().getItemInHand();
+        if (item.getType() == Material.AIR) {
             p.sendMessage(ChatColor.RED + "[CI] You cannot be holding nothing.");
             return true;
         } //Null check
-        ItemMeta meta = p.getInventory().getItemInHand().getItemMeta();
+        ItemMeta meta = item.getItemMeta();
         switch (command.getName().toLowerCase()) {
             case "rename":
                 String name = "";
@@ -50,7 +52,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                 name = name.trim();
                 if (args.length <= 0) {
                     meta.setDisplayName(" ");
-                    p.getInventory().getItemInHand().setItemMeta(meta);
+                    item.setItemMeta(meta);
                     return true;
                 }
                 if (args[0].equals("listname")) {
@@ -68,7 +70,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                     }
                 }
                 meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
-                p.getInventory().getItemInHand().setItemMeta(meta);
+                item.setItemMeta(meta);
                 return true;
             case "relore":
                 if (args.length <= 0) {
@@ -89,7 +91,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                         }
                         if (args[1].equals("all")) {
                             meta.setLore(null);
-                            p.getInventory().getItemInHand().setItemMeta(meta);
+                            item.setItemMeta(meta);
                             return true;
                         }// Removing All lines of lore on an item
                         if (lore.isEmpty()) {
@@ -116,7 +118,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                         }
                         lore.remove(specified);
                         meta.setLore(lore);
-                        p.getInventory().getItemInHand().setItemMeta(meta);
+                        item.setItemMeta(meta);
                         return true;
                     }
                     case "add":
@@ -127,7 +129,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                         loretoadd = loretoadd.trim();
                         lore.add(loretoadd);
                         meta.setLore(lore);
-                        p.getInventory().getItemInHand().setItemMeta(meta);
+                        item.setItemMeta(meta);
                         break;
                     case "set": {
                         if (lore.isEmpty()) {
@@ -159,7 +161,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                         if (args.length <= 2) {
                             lore.set(specified, "");
                             meta.setLore(lore);
-                            p.getInventory().getItemInHand().setItemMeta(meta);
+                            item.setItemMeta(meta);
                             return true;
                         }// If what you want to set it to is a blank line
                         String loretoset = "";
@@ -169,7 +171,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                         loretoset = loretoset.trim();
                         lore.set(specified, loretoset);
                         meta.setLore(lore);
-                        p.getInventory().getItemInHand().setItemMeta(meta);
+                        item.setItemMeta(meta);
                         break;
                     }
                     case "list":
@@ -208,15 +210,15 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                         }
                         lore.add(size, "");
                         meta.setLore(lore);
-                        p.getInventory().getItemInHand().setItemMeta(meta);
+                        item.setItemMeta(meta);
                         return true;
                     default:
                         p.sendMessage(ChatColor.RED + "[CI] Not a valid type of lore customization, Options: add, set, remove, insert, list");
                         break;
                 }
             case "toggleunbreakable":
-                meta.spigot().setUnbreakable(!p.getInventory().getItemInHand().getItemMeta().spigot().isUnbreakable());
-                p.getInventory().getItemInHand().setItemMeta(meta);
+                meta.spigot().setUnbreakable(!item.getItemMeta().spigot().isUnbreakable());
+                item.setItemMeta(meta);
                 break;
             case "togglehideenchants":
                 if (meta.hasItemFlag(ItemFlag.HIDE_ENCHANTS)) {
@@ -224,7 +226,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                 } else {
                     meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 }
-                p.getInventory().getItemInHand().setItemMeta(meta);
+                item.setItemMeta(meta);
                 break;
             case "togglehideattributes":
                 if (meta.hasItemFlag(ItemFlag.HIDE_ATTRIBUTES)) {
@@ -232,7 +234,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                 } else {
                     meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
                 }
-                p.getInventory().getItemInHand().setItemMeta(meta);
+                item.setItemMeta(meta);
                 break;
             case "togglehideunbreakable":
                 if (meta.hasItemFlag(ItemFlag.HIDE_UNBREAKABLE)) {
@@ -240,7 +242,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                 } else {
                     meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
                 }
-                p.getInventory().getItemInHand().setItemMeta(meta);
+                item.setItemMeta(meta);
                 break;
             case "togglehideplacedon":
                 if (meta.hasItemFlag(ItemFlag.HIDE_PLACED_ON)) {
@@ -248,7 +250,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                 } else {
                     meta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
                 }
-                p.getInventory().getItemInHand().setItemMeta(meta);
+                item.setItemMeta(meta);
                 break;
             case "togglehidedestroys":
                 if (meta.hasItemFlag(ItemFlag.HIDE_DESTROYS)) {
@@ -256,7 +258,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                 } else {
                     meta.addItemFlags(ItemFlag.HIDE_DESTROYS);
                 }
-                p.getInventory().getItemInHand().setItemMeta(meta);
+                item.setItemMeta(meta);
                 break;
             case "togglehidepotions":
                 if (meta.hasItemFlag(ItemFlag.HIDE_POTION_EFFECTS)) {
@@ -264,24 +266,24 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                 } else {
                     meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
                 }
-                p.getInventory().getItemInHand().setItemMeta(meta);
+                item.setItemMeta(meta);
                 break;
             case "colorleather":
                 if (args.length<1){
                     p.sendMessage(ChatColor.RED + "[CI] Specify a hex color.");
                     return false;
                 }
-                ItemStack LeatherStack = p.getInventory().getItemInHand();
+                ItemStack LeatherStack = item;
                 switch (LeatherStack.getType()) {
                     case LEATHER_BOOTS:
                     case LEATHER_CHESTPLATE:
                     case LEATHER_HELMET:
                     case LEATHER_LEGGINGS:
-                        ItemStack item = new ItemStack(LeatherStack);
-                        LeatherArmorMeta leathermeta = (LeatherArmorMeta) item.getItemMeta();
-                        item.setItemMeta(meta);
+                        ItemStack Leatheritem = new ItemStack(LeatherStack);
+                        LeatherArmorMeta leathermeta = (LeatherArmorMeta) Leatheritem.getItemMeta();
+                        Leatheritem.setItemMeta(meta);
                         if (args[0].startsWith("#")){
-                            p.getInventory().getItemInHand().setItemMeta(hex2Rgb(leathermeta,args[0]));
+                            Leatheritem.setItemMeta(hex2Rgb(leathermeta,args[0]));
                             return true;
                         }else{
                             if (args.length<4){
@@ -298,7 +300,7 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                                 }
                                 Color color2 = (Color.fromRGB(RED,GREEN,BLUE));
                                 leathermeta.setColor(color2);
-                                p.getInventory().getItemInHand().setItemMeta(leathermeta);
+                                Leatheritem.setItemMeta(leathermeta);
                             }else{
                                 p.sendMessage(ChatColor.RED + "[CI] You specify either a hex or a set of RGB values.");
                                 return true;
@@ -311,12 +313,13 @@ public class customizeItems implements CommandExecutor { //Todo Add TabExectutor
                 }
                 break;
             case "glowing":
-                NBTItem nbti = new NBTItem(p.getInventory().getItemInHand());
-                NBTCompoundList Enchants = nbti.getCompoundList("ench");
-                Enchants.addCompound();
-                Enchants.remove(0); //necessary for giving the fake enchantment
+                Glow glow = new Glow();
+                meta.addEnchant(glow,1,true);
+                item.setItemMeta(meta);
                 break;
         }
+        p.getInventory().setItemInHand(item);
+        p.updateInventory();
         return true;
     }
     public static ItemMeta hex2Rgb(ItemMeta hex2rgbmeta, String colorStr) {

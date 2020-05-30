@@ -24,19 +24,19 @@ commands:
     description: Renames an item.
   relore:
     description: Relores an item.
-  exunbreaking:
+  toggleunbreakable:
     description: Toggles on and off Unbreakable.
-  exhideenchants:
+  togglehideenchants:
     description: Toggles on and off Enchantments.
-  exhideunbreakable:
+  togglehideunbreakable:
     description: Toggles on and off Unbreakable tag.
-  exhideattributes:
+  togglehideattributes:
     description: Toggles on and off Attributes.
-  exhideplacedon:
+  togglehideplacedon:
     description: Toggles on and off Place On.
-  exhidedestroys:
+  togglehidedestroys:
     description: Toggles on and off Destroys.
-  exhidepotions:
+  togglehidepotions:
     description: Toggles on and off Potions.
   particletrails:
     description: Particle Trails.
@@ -56,3 +56,5 @@ commands:
     description: Nicks
   inventory:
     description: Opens an Inventory
+  glowing:
+    description: makes an item glow like it is enchanted.
