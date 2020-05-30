@@ -22,7 +22,9 @@ public class gamemode implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (args.length > 0) {
-            gamemodeChange(command.getName(),Bukkit.getPlayer(args[0]));
+            if (Bukkit.getPlayer(args[0]) != null){
+                gamemodeChange(command.getName(), Bukkit.getPlayer(args[0]));
+            }
         } else {
             gamemodeChange(command.getName(),p);
         }
