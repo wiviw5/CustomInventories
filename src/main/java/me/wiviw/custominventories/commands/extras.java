@@ -1,46 +1,21 @@
 package me.wiviw.custominventories.commands;
 
-import com.comphenix.packetwrapper.WrapperPlayServerPlayerInfo;
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.events.PacketEvent;
-import com.comphenix.protocol.wrappers.EnumWrappers;
-import com.comphenix.protocol.wrappers.PlayerInfoData;
-import com.comphenix.protocol.wrappers.WrappedChatComponent;
-import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.nametagedit.plugin.NametagEdit;
-import me.wiviw.custominventories.CustomInventories;
-import me.wiviw.custominventories.events.InventoryHelper;
 import net.minecraft.server.v1_8_R3.EntityLiving;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class extras implements CommandExecutor {
-    public static ItemMeta hex2Rgb(ItemMeta hex2rgbmeta, String colorStr) {
-        int red = Integer.valueOf(colorStr.substring( 1, 3 ), 16 );
-        int green = Integer.valueOf(colorStr.substring( 3, 5 ), 16 );
-        int blue = Integer.valueOf(colorStr.substring( 5, 7 ), 16 );
-        LeatherArmorMeta meta1 = (LeatherArmorMeta) hex2rgbmeta;
-        Color color2 = (Color.fromRGB(red,green,blue));
-        meta1.setColor(color2);
-        return meta1;
-    }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)){
@@ -54,106 +29,6 @@ public class extras implements CommandExecutor {
         Player p = (Player) sender;
         ItemMeta meta = p.getInventory().getItemInHand().getItemMeta();
         switch(command.getName()) {
-        case "exunbreaking":
-        	if (p.getInventory().getItemInHand().getItemMeta().spigot().isUnbreakable()){
-                meta.spigot().setUnbreakable(false);
-            }else{
-                meta.spigot().setUnbreakable(true);
-            }
-            p.getInventory().getItemInHand().setItemMeta(meta);
-            break;
-        case "exhideenchants":
-        	if (meta.hasItemFlag(ItemFlag.HIDE_ENCHANTS)){
-                meta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
-            }else{
-                meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            }
-            p.getInventory().getItemInHand().setItemMeta(meta);
-            break;
-        case "exhideattributes":
-        	if (meta.hasItemFlag(ItemFlag.HIDE_ATTRIBUTES)){
-                meta.removeItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            }else{
-                meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            }
-            p.getInventory().getItemInHand().setItemMeta(meta);
-            break;
-        case "exhideunbreakable":
-        	if (meta.hasItemFlag(ItemFlag.HIDE_UNBREAKABLE)){
-                meta.removeItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-            }else{
-                meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-            }
-            p.getInventory().getItemInHand().setItemMeta(meta);
-            break;
-        case "exhideplacedon":
-        	if (meta.hasItemFlag(ItemFlag.HIDE_PLACED_ON)){
-                meta.removeItemFlags(ItemFlag.HIDE_PLACED_ON);
-            }else{
-                meta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
-            }
-            p.getInventory().getItemInHand().setItemMeta(meta);
-            break;
-        case "exhidedestroys":
-        	if (meta.hasItemFlag(ItemFlag.HIDE_DESTROYS)){
-                meta.removeItemFlags(ItemFlag.HIDE_DESTROYS);
-            }else{
-                meta.addItemFlags(ItemFlag.HIDE_DESTROYS);
-            }
-            p.getInventory().getItemInHand().setItemMeta(meta);
-            break;
-        case "exhidepotions":
-        	if (meta.hasItemFlag(ItemFlag.HIDE_POTION_EFFECTS)){
-                meta.removeItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-            }else{
-                meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-            }
-            p.getInventory().getItemInHand().setItemMeta(meta);
-            break;
-        case "colorleather":
-            if (args.length<1){
-                p.sendMessage(ChatColor.RED + "[CI] Specify a hex color.");
-                return false;
-            }
-            ItemStack LeatherStack = p.getInventory().getItemInHand();
-            switch (LeatherStack.getType()) {
-                case LEATHER_BOOTS:
-                case LEATHER_CHESTPLATE:
-                case LEATHER_HELMET:
-                case LEATHER_LEGGINGS:
-                    ItemStack item = new ItemStack(LeatherStack);
-                    LeatherArmorMeta leathermeta = (LeatherArmorMeta) item.getItemMeta();
-                    item.setItemMeta(meta);
-                    if (args[0].startsWith("#")){
-                        p.getInventory().getItemInHand().setItemMeta(hex2Rgb(leathermeta,args[0]));
-                        return true;
-                    }else{
-                        if (args.length<4){
-                            int RED;
-                            int GREEN;
-                            int BLUE;
-                            try {
-                                RED = Integer.parseInt(args[0]);
-                                GREEN = Integer.parseInt(args[1]);
-                                BLUE = Integer.parseInt(args[2]);
-                            } catch (NumberFormatException e){
-                                p.sendMessage(ChatColor.RED + "[CI] You list numbers as a RGB value.");
-                                return true;
-                            }
-                            Color color2 = (Color.fromRGB(RED,GREEN,BLUE));
-                            leathermeta.setColor(color2);
-                            p.getInventory().getItemInHand().setItemMeta(leathermeta);
-                        }else{
-                            p.sendMessage(ChatColor.RED + "[CI] You specify either a hex or a set of RGB values.");
-                            return true;
-                        }
-                    }
-                    break;
-                default:
-                    p.sendMessage(ChatColor.RED + "[CI] You must be holding leather.");
-                    break;
-            }
-            break;
         case "sethealth":
             if (args.length<2){
                 p.sendMessage(ChatColor.RED + "[CI] Specify [Health, MaxHealth, Hunger, Absorp] and a value.");

@@ -7,7 +7,6 @@ import me.wiviw.custominventories.events.MobInteractions;
 import me.wiviw.custominventories.events.damagetracker;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -38,20 +37,21 @@ public final class CustomInventories extends JavaPlugin {
         getCommand("gma").setExecutor(new gamemode());
         getCommand("returntext").setExecutor(new textreturn());
         getCommand("returntextall").setExecutor(new textreturn());
-        getCommand("rename").setExecutor(new itemdependants());
-        getCommand("relore").setExecutor(new itemdependants());
-        getCommand("exunbreaking").setExecutor(new extras());
-        getCommand("exhideunbreakable").setExecutor(new extras());
-        getCommand("exhideenchants").setExecutor(new extras());
-        getCommand("exhideattributes").setExecutor(new extras());
-        getCommand("exhideplacedon").setExecutor(new extras());
-        getCommand("exhidedestroys").setExecutor(new extras());
-        getCommand("exhidepotions").setExecutor(new extras());
+        getCommand("rename").setExecutor(new customizeItems());
+        getCommand("relore").setExecutor(new customizeItems());
+        getCommand("exunbreaking").setExecutor(new customizeItems());
+        getCommand("togglehideunbreakable").setExecutor(new customizeItems());
+        getCommand("togglehideenchants").setExecutor(new customizeItems());
+        getCommand("togglehideattributes").setExecutor(new customizeItems());
+        getCommand("togglehideplacedon").setExecutor(new customizeItems());
+        getCommand("togglehidedestroys").setExecutor(new customizeItems());
+        getCommand("togglehidepotions").setExecutor(new customizeItems());
+        getCommand("colorleather").setExecutor(new customizeItems());
+        //Todo Update below
         getCommand("particletrails").setExecutor(new trails());
         getCommand("entitysetup").setExecutor(new entitysetup());
         getCommand("entitysaving").setExecutor(new entitysetup());
         getCommand("entitytesting").setExecutor(new entitysetup());
-        getCommand("colorleather").setExecutor(new extras());
         getCommand("sethealth").setExecutor(new extras());
         getCommand("setname").setExecutor(new extras());
         getCommand("nick").setExecutor(new extras());
@@ -62,11 +62,19 @@ public final class CustomInventories extends JavaPlugin {
         File configfile = new File("plugins//CustomInventories//config.yml");
         String pluginFolder = p.getDataFolder().getAbsolutePath(); //Getting the absolutepath of the folder
         (new File(pluginFolder)).mkdirs(); // making the plugin folder for config
-        (new File(pluginFolder+"/inventories")).mkdirs(); //Plugin folder that stores all inventories
-        (new File(pluginFolder+"/setups")).mkdirs(); //Plugin folder that stores all inventories
-        try { (new File(pluginFolder+"/config.yml")).createNewFile(); } catch (IOException e) { System.out.println("Could not create plugin file"); } // Creates config file
+        (new File(pluginFolder + "/inventories")).mkdirs(); //Plugin folder that stores all inventories
+        (new File(pluginFolder + "/setups")).mkdirs(); //Plugin folder that stores all inventories
+        try {
+            (new File(pluginFolder + "/config.yml")).createNewFile();
+        } catch (IOException e) {
+            System.out.println("Could not create plugin file");
+        } // Creates config file
         p.saveDefaultConfig();
-        try { p.getConfig().load(configfile); } catch (IOException | InvalidConfigurationException e) { System.out.println("Could not load plugin config file"); } // loads the config file
+        try {
+            p.getConfig().load(configfile);
+        } catch (IOException | InvalidConfigurationException e) {
+            System.out.println("Could not load plugin config file");
+        } // loads the config file
         FileConfiguration config = p.getConfig();
         config.addDefault("EnviromentEffects", false); //Default False, Turns on/off environment variables.
         config.addDefault("BlockUpdates", false); //Default False, Turns off certain block updates

@@ -19,7 +19,7 @@ public class gamemode implements CommandExecutor {
         if (!(sender.isOp())) {
             sender.sendMessage(ChatColor.RED + "[CI] You are lacking permissions to run this command.");
             return false;
-        }
+        } //Todo Update Op Check format
         Player p = (Player) sender;
         if (args.length > 0) {
             if (Bukkit.getPlayer(args[0]) != null){

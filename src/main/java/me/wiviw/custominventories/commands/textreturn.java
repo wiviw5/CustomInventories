@@ -36,7 +36,7 @@ public class textreturn implements CommandExecutor {
                 Bukkit.broadcastMessage(input);
                 return true;
             }
-        }
+        } //Todo Update Op Check format
         return true;
     }
 }

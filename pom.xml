@@ -71,6 +71,11 @@
             <id>upstream</id>
             <url>http://ci.nametagedit.com/plugin/repository/everything/</url>
         </repository>
+        <repository>
+            <id>codemc-repo</id>
+            <url>https://repo.codemc.org/repository/maven-public/</url>
+            <layout>default</layout>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -98,6 +103,11 @@
             <groupId>com.connorlinfoot</groupId>
             <artifactId>bountifulapi</artifactId>
             <version>1.6.4</version>
+        </dependency>
+        <dependency>
+            <groupId>de.tr7zw</groupId>
+            <artifactId>item-nbt-api-plugin</artifactId>
+            <version>2.2.0</version>
         </dependency>
     </dependencies>
 </project>
