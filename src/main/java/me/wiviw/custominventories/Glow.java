@@ -40,6 +40,7 @@ public class Glow extends Enchantment {
     public boolean canEnchantItem(ItemStack itemStack) {
         return false;
     }
+
     public static void registerEnchant() {
         try {
             Field f = Enchantment.class.getDeclaredField("acceptingNew");
@@ -51,6 +52,7 @@ public class Glow extends Enchantment {
         try {
             Glow glow = new Glow();
             Enchantment.registerEnchantment(glow);
+        } catch (IllegalArgumentException ignored) {
         } catch (Exception e) {
             e.printStackTrace();
         }
