@@ -53,8 +53,7 @@ public final class CustomInventories extends JavaPlugin {
         getCommand("togglehidepotions").setExecutor(new customizeItems());
         getCommand("colorleather").setExecutor(new customizeItems());
         getCommand("glowing").setExecutor(new customizeItems());
-        //Todo Update below
-        getCommand("particletrails").setExecutor(new trails());
+        //Todo Update all commands below
         getCommand("entitysetup").setExecutor(new entitysetup());
         getCommand("entitysaving").setExecutor(new entitysetup());
         getCommand("entitytesting").setExecutor(new entitysetup());
