@@ -40,12 +40,6 @@ commands:
     description: Toggles on and off Potions.
   particletrails:
     description: Particle Trails.
-  entitysetup:
-    description: Setup defined by a config file.
-  entitysaving:
-    description: Saving entities into a config file
-  entitytesting:
-    description: Some testing command, shouldn't be in release
   colorleather:
     description: Colors leather armor.
   sethealth:

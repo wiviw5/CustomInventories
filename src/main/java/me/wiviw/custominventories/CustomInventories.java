@@ -54,9 +54,6 @@ public final class CustomInventories extends JavaPlugin {
         getCommand("colorleather").setExecutor(new customizeItems());
         getCommand("glowing").setExecutor(new customizeItems());
         //Todo Update all commands below
-        getCommand("entitysetup").setExecutor(new entitysetup());
-        getCommand("entitysaving").setExecutor(new entitysetup());
-        getCommand("entitytesting").setExecutor(new entitysetup());
         getCommand("sethealth").setExecutor(new extras());
         getCommand("setname").setExecutor(new extras());
         getCommand("nick").setExecutor(new extras());
