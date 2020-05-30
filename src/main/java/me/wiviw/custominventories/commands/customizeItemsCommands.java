@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-public class customizeItems implements CommandExecutor { //Todo Add TabExectutor and tab autocomplete for these commands.
+public class customizeItemsCommands implements CommandExecutor { //Todo Add TabExectutor and tab autocomplete for these commands.
     public static String colorize(String str) {
         return str.replace('&', '§');
     }

@@ -7,12 +7,10 @@ import me.wiviw.custominventories.events.MobInteractions;
 import me.wiviw.custominventories.events.damagetracker;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 import static me.wiviw.custominventories.Glow.registerEnchant;
 
@@ -42,21 +40,19 @@ public final class CustomInventories extends JavaPlugin {
         getCommand("gma").setExecutor(new gamemode());
         getCommand("returntext").setExecutor(new textreturn());
         getCommand("returntextall").setExecutor(new textreturn());
-        getCommand("rename").setExecutor(new customizeItems());
-        getCommand("relore").setExecutor(new customizeItems());
-        getCommand("toggleunbreakable").setExecutor(new customizeItems());
-        getCommand("togglehideunbreakable").setExecutor(new customizeItems());
-        getCommand("togglehideenchants").setExecutor(new customizeItems());
-        getCommand("togglehideattributes").setExecutor(new customizeItems());
-        getCommand("togglehideplacedon").setExecutor(new customizeItems());
-        getCommand("togglehidedestroys").setExecutor(new customizeItems());
-        getCommand("togglehidepotions").setExecutor(new customizeItems());
-        getCommand("colorleather").setExecutor(new customizeItems());
-        getCommand("glowing").setExecutor(new customizeItems());
+        getCommand("rename").setExecutor(new customizeItemsCommands());
+        getCommand("relore").setExecutor(new customizeItemsCommands());
+        getCommand("toggleunbreakable").setExecutor(new customizeItemsCommands());
+        getCommand("togglehideunbreakable").setExecutor(new customizeItemsCommands());
+        getCommand("togglehideenchants").setExecutor(new customizeItemsCommands());
+        getCommand("togglehideattributes").setExecutor(new customizeItemsCommands());
+        getCommand("togglehideplacedon").setExecutor(new customizeItemsCommands());
+        getCommand("togglehidedestroys").setExecutor(new customizeItemsCommands());
+        getCommand("togglehidepotions").setExecutor(new customizeItemsCommands());
+        getCommand("colorleather").setExecutor(new customizeItemsCommands());
+        getCommand("glowing").setExecutor(new customizeItemsCommands());
         //Todo Update all commands below
         getCommand("sethealth").setExecutor(new extras());
-        getCommand("setname").setExecutor(new extras());
-        getCommand("nick").setExecutor(new extras());
         getCommand("inventory").setExecutor(new extras());
     }
 

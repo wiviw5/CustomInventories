@@ -44,10 +44,6 @@ commands:
     description: Colors leather armor.
   sethealth:
     description: Sets your Health.
-  setname:
-    description: Sets your display name
-  nick:
-    description: Nicks
   inventory:
     description: Opens an Inventory
   glowing:
