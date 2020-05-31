@@ -48,3 +48,5 @@ commands:
     description: Opens an Inventory
   glowing:
     description: makes an item glow like it is enchanted.
+  colorcodes:
+    description: A chat feature for all the color descriptions you would ever need!

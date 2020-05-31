@@ -54,6 +54,7 @@ public final class CustomInventories extends JavaPlugin {
         //Todo Update all commands below
         getCommand("sethealth").setExecutor(new extras());
         getCommand("inventory").setExecutor(new extras());
+        getCommand("colorcodes").setExecutor(new extras());
     }
 
     public static void PluginFolders(CustomInventories p) {

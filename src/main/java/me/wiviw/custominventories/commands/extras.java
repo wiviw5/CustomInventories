@@ -111,6 +111,19 @@ public class extras implements CommandExecutor {
 
 
                 break;
+            case "colorcodes":
+                p.sendMessage((char) 167 + "f&0 = " + (char) 167 + "0Black                  " + (char) 167 + "f&8 = " + (char) 167 + "8Dark Gray");
+                p.sendMessage((char) 167 + "f&1 = " + (char) 167 + "1Dark Blue           " + (char) 167 + "f&9 = " + (char) 167 + "9Blue");
+                p.sendMessage((char) 167 + "f&2 = " + (char) 167 + "2Dark Green        " + (char) 167 + "f&a = " + (char) 167 + "aGreen");
+                p.sendMessage((char) 167 + "f&3 = " + (char) 167 + "3Dark Aqua          " + (char) 167 + "f&b = " + (char) 167 + "bAqua");
+                p.sendMessage((char) 167 + "f&4 = " + (char) 167 + "4Dark Red            " + (char) 167 + "f&c = " + (char) 167 + "cRed");
+                p.sendMessage((char) 167 + "f&5 = " + (char) 167 + "5Dark Purple       " + (char) 167 + "f&d = " + (char) 167 + "dLight Purple");
+                p.sendMessage((char) 167 + "f&6 = " + (char) 167 + "6Gold                    " + (char) 167 + "f&e = " + (char) 167 + "eYellow");
+                p.sendMessage((char) 167 + "f&7 = " + (char) 167 + "7Gray                   " + (char) 167 + "f&f = " + (char) 167 + "fWhite");
+                p.sendMessage((char) 167 + "f&k = " + (char) 167 + "kMagic" + (char) 167  + "r                  " + (char) 167 + "f&n = " + (char) 167 + "nUnderline");
+                p.sendMessage((char) 167 + "f&l = " + (char) 167 + "lBold                 " + (char) 167 + "f&o = " + (char) 167 + "oItalic");
+                p.sendMessage((char) 167 + "f&m = " + (char) 167 + "mStrikeThrough" + (char) 167  + "r   " + (char) 167 + "f&r = " + (char) 167 + "rReset");
+                break;
             default:
                 p.sendMessage(ChatColor.RED + "[CI] " + command.getName() + " is not a command.");
         }
