@@ -5,13 +5,16 @@ import com.nametagedit.plugin.NametagEdit;
 import net.minecraft.server.v1_8_R3.EntityLiving;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Arrays;
 import java.util.List;
@@ -122,9 +125,28 @@ public class extras implements CommandExecutor {
                 p.sendMessage((char) 167 + "f&l = " + (char) 167 + "lBold                 " + (char) 167 + "f&o = " + (char) 167 + "oItalic");
                 p.sendMessage((char) 167 + "f&m = " + (char) 167 + "mStrikeThrough" + (char) 167  + "r   " + (char) 167 + "f&r = " + (char) 167 + "rReset");
                 break;
+            case "head":
+                if (args.length<1){
+                    p.sendMessage(ChatColor.RED + "[CI] Specify a name.");
+                    return false;
+                }
+                ItemStack PlayerHead = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+                SkullMeta skullmeta = (SkullMeta) PlayerHead.getItemMeta();
+                skullmeta.setOwner(args[0]);
+                PlayerHead.setItemMeta(skullmeta);
+                p.getInventory().setItem(getFirstOpenInventorySlot(p.getInventory()), PlayerHead);
+                break;
             default:
                 p.sendMessage(ChatColor.RED + "[CI] " + command.getName() + " is not a command.");
         }
         return true;
+    }
+    public static int getFirstOpenInventorySlot(Inventory inventory){
+        for (int i = 0; i<inventory.getSize(); i++){
+            if (inventory.getItem(i)==null){
+                return i;
+            }
+        }
+        return -1;
     }
 }

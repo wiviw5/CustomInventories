@@ -50,3 +50,5 @@ commands:
     description: makes an item glow like it is enchanted.
   colorcodes:
     description: A chat feature for all the color descriptions you would ever need!
+  head:
+    description: Gives you a head.
