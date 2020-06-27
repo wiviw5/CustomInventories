@@ -55,7 +55,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                     item.setItemMeta(meta);
                     return true;
                 }
-                if (args[0].equals("listname")) {
+                if (args[0].equals("list")) {
                     if (meta.hasDisplayName()) {
                         String nameitem = meta.getDisplayName();
                         nameitem = nameitem.replace('§', '&'); //Todo Replace sections of code relying on "§" with char definition
@@ -130,7 +130,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         lore.add(loretoadd);
                         meta.setLore(lore);
                         item.setItemMeta(meta);
-                        break;
+                        return true;
                     case "set": {
                         if (lore.isEmpty()) {
                             p.sendMessage(ChatColor.RED + "[CI] You cannot use set if the item doesn't have lore!");
@@ -172,7 +172,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         lore.set(specified, loretoset);
                         meta.setLore(lore);
                         item.setItemMeta(meta);
-                        break;
+                        return true;
                     }
                     case "list":
                         if (lore.isEmpty()) {
@@ -187,7 +187,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                             msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("/relore set " + linenumber + " " + lore2.replace('§', '&')).create()));
                             p.spigot().sendMessage(msg);
                         }
-                        break;
+                        return true;
                     case "insert":
                         if (lore.isEmpty()) {
                             p.sendMessage(ChatColor.RED + "[CI] The item must have lore for this this to work!");
@@ -214,7 +214,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         return true;
                     default:
                         p.sendMessage(ChatColor.RED + "[CI] Not a valid type of lore customization, Options: add, set, remove, insert, list");
-                        break;
+                        return true;
                 }
             case "toggleunbreakable":
                 meta.spigot().setUnbreakable(!item.getItemMeta().spigot().isUnbreakable());

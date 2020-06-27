@@ -108,8 +108,6 @@ public class extras implements CommandExecutor {
                     p.sendMessage(ChatColor.RED + "[CI] Include nl\\ in your message to separate the titles.");
                     return false;
                 }
-
-
                 break;
             case "colorcodes":
                 p.sendMessage((char) 167 + "f&0 = " + (char) 167 + "0Black                  " + (char) 167 + "f&8 = " + (char) 167 + "8Dark Gray");

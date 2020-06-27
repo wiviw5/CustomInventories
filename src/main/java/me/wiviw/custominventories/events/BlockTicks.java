@@ -20,12 +20,12 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class BlockTicks implements Listener {
 	@EventHandler
-	void onFireLight(BlockIgniteEvent i) {
+	void onFireLight(BlockIgniteEvent e) {
 		File file = new File("plugins//CustomInventories//config.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 		if (config.getBoolean("BlockUpdates")) {
-			if (i.getPlayer() == null) {
-				i.setCancelled(true);
+			if (e.getPlayer() == null) {
+				e.setCancelled(true);
 			}
 		}
 	}
@@ -35,11 +35,11 @@ public class BlockTicks implements Listener {
 		File file = new File("plugins//CustomInventories//config.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 		if (config.getBoolean("BlockUpdates")) {
-			int id = e.getBlock().getTypeId();
-			if (id == 8 || id == 9) {
+			Material block = e.getBlock().getType();
+			if (block==Material.STATIONARY_WATER || block==Material.WATER) {
 				e.setCancelled(true);
 			} // Water Cancellation
-			if (id == 10 || id == 11) {
+			if (block==Material.STATIONARY_LAVA || block==Material.LAVA) {
 				e.setCancelled(true);
 			} // Lava Cancellation
 		}
