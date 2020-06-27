@@ -30,17 +30,17 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "[CI] Console Cannot run this command.");
-            return true;
+            return false;
         }
         if (!(sender.isOp())) {
             sender.sendMessage(ChatColor.RED + "[CI] You are lacking permissions to run this command.");
-            return true;
+            return false;
         } //Todo Update Op Check format
         Player p = (Player) sender;
         ItemStack item = p.getInventory().getItemInHand();
         if (item.getType() == Material.AIR) {
             p.sendMessage(ChatColor.RED + "[CI] You cannot be holding nothing.");
-            return true;
+            return false;
         } //Null check
         ItemMeta meta = item.getItemMeta();
         switch (command.getName().toLowerCase()) {
@@ -53,7 +53,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                 if (args.length <= 0) {
                     meta.setDisplayName(" ");
                     item.setItemMeta(meta);
-                    return true;
+                    break;
                 }
                 if (args[0].equals("list")) {
                     if (meta.hasDisplayName()) {
@@ -63,19 +63,19 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         msg.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/rename " + nameitem));
                         msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("/rename " + nameitem).create()));
                         p.spigot().sendMessage(msg);
-                        return true;
+                        break;
                     } else {
                         p.sendMessage(ChatColor.RED + "[CI] Item must has a name other then default");
-                        return true;
+                        return false;
                     }
                 }
                 meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
                 item.setItemMeta(meta);
-                return true;
+                break;
             case "relore":
                 if (args.length <= 0) {
                     p.sendMessage(ChatColor.RED + "[CI] You must specify lore to be added, For Blank lines: \"blank\"");
-                    return true;
+                    return false;
                 } // Check for if they did not include any args
                 List<String> lore;
                 if (meta.hasLore()) {
@@ -87,39 +87,39 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                     case "remove": {
                         if (args.length <= 1) {
                             p.sendMessage(ChatColor.RED + "[CI] You must specify the line or all lines to be removed");
-                            return true;
+                            return false;
                         }
                         if (args[1].equals("all")) {
                             meta.setLore(null);
                             item.setItemMeta(meta);
-                            return true;
+                            break;
                         }// Removing All lines of lore on an item
                         if (lore.isEmpty()) {
                             p.sendMessage(ChatColor.RED + "[CI] You cannot use remove if the item doesn't have lore!");
-                            return true;
+                            return false;
                         } //Catches for stuff without lore
                         int specified;
                         try {
                             specified = Integer.parseInt(args[1]);
                         } catch (NumberFormatException NFE) {
                             p.sendMessage(ChatColor.RED + "[CI] You can't put a letter there...");
-                            return true;
+                            return false;
                         }
                         specified--;
                         int loresize = lore.size();
                         loresize--;
                         if (specified > loresize) {
                             p.sendMessage(ChatColor.RED + "[CI] You can't remove an items lore line if it doesn't exist!");
-                            return true;
+                            return false;
                         } //Catches for stuff out of bounds
                         if (specified < 0) {
                             p.sendMessage(ChatColor.RED + "[CI] You can't remove a negative lore line?");
-                            return true;
+                            return false;
                         }
                         lore.remove(specified);
                         meta.setLore(lore);
                         item.setItemMeta(meta);
-                        return true;
+                        break;
                     }
                     case "add":
                         String loretoadd = "";
@@ -130,39 +130,39 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         lore.add(loretoadd);
                         meta.setLore(lore);
                         item.setItemMeta(meta);
-                        return true;
+                        break;
                     case "set": {
                         if (lore.isEmpty()) {
                             p.sendMessage(ChatColor.RED + "[CI] You cannot use set if the item doesn't have lore!");
-                            return true;
+                            return false;
                         } //Catches for stuff without lore
                         if (args.length <= 1) {
                             p.sendMessage(ChatColor.RED + "[CI] You must specify a line to set!");
-                            return true;
+                            return false;
                         }
                         int specified;
                         try {
                             specified = Integer.parseInt(args[1]);
                         } catch (NumberFormatException NFE) {
                             p.sendMessage(ChatColor.RED + "[CI] You can't put a letter there...");
-                            return true;
+                            return false;
                         }
                         specified--;
                         int loresize = lore.size();
                         loresize--;
                         if (specified > loresize) {
                             p.sendMessage(ChatColor.RED + "[CI] You can't set an items lore line if it doesn't exist!");
-                            return true;
+                            return false;
                         } //Catches for stuff out of bounds
                         if (specified < 0) {
                             p.sendMessage(ChatColor.RED + "[CI] You can't set a negative lore line?");
-                            return true;
+                            return false;
                         }
                         if (args.length <= 2) {
                             lore.set(specified, "");
                             meta.setLore(lore);
                             item.setItemMeta(meta);
-                            return true;
+                            break;
                         }// If what you want to set it to is a blank line
                         String loretoset = "";
                         for (int i = 2; i < args.length; i++) {
@@ -172,12 +172,12 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         lore.set(specified, loretoset);
                         meta.setLore(lore);
                         item.setItemMeta(meta);
-                        return true;
+                        break;
                     }
                     case "list":
                         if (lore.isEmpty()) {
                             p.sendMessage(ChatColor.RED + "[CI] The item must have lore for this this to work!");
-                            return true;
+                            return false;
                         }
                         int linenumber = 0;
                         for (String lore2 : lore) {
@@ -187,35 +187,36 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                             msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("/relore set " + linenumber + " " + lore2.replace('§', '&')).create()));
                             p.spigot().sendMessage(msg);
                         }
-                        return true;
+                        break;
                     case "insert":
                         if (lore.isEmpty()) {
                             p.sendMessage(ChatColor.RED + "[CI] The item must have lore for this this to work!");
-                            return true;
+                            return false;
                         }
                         if (args.length < 2) {
                             p.sendMessage(ChatColor.RED + "[CI] You must specify the line you want to insert after!");
-                            return true;
+                            return false;
                         }
                         int size;
                         try {
                             size = Integer.parseInt(args[1]);
                         } catch (NumberFormatException e) {
                             p.sendMessage(ChatColor.RED + "[CI] Specify what line you would like to insert after.");
-                            return true;
+                            return false;
                         }
                         if (lore.size() < size) {
                             p.sendMessage(ChatColor.RED + "[CI] The line must be within the lore.");
-                            return true;
+                            return false;
                         }
                         lore.add(size, "");
                         meta.setLore(lore);
                         item.setItemMeta(meta);
-                        return true;
+                        break;
                     default:
                         p.sendMessage(ChatColor.RED + "[CI] Not a valid type of lore customization, Options: add, set, remove, insert, list");
-                        return true;
+                        break;
                 }
+                break;
             case "toggleunbreakable":
                 meta.spigot().setUnbreakable(!item.getItemMeta().spigot().isUnbreakable());
                 item.setItemMeta(meta);
@@ -273,18 +274,17 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                     p.sendMessage(ChatColor.RED + "[CI] Specify a hex color.");
                     return false;
                 }
-                ItemStack LeatherStack = item;
-                switch (LeatherStack.getType()) {
+                switch (item.getType()) {
                     case LEATHER_BOOTS:
                     case LEATHER_CHESTPLATE:
                     case LEATHER_HELMET:
                     case LEATHER_LEGGINGS:
-                        ItemStack Leatheritem = new ItemStack(LeatherStack);
+                        ItemStack Leatheritem = new ItemStack(item);
                         LeatherArmorMeta leathermeta = (LeatherArmorMeta) Leatheritem.getItemMeta();
                         Leatheritem.setItemMeta(meta);
                         if (args[0].startsWith("#")){
                             Leatheritem.setItemMeta(hex2Rgb(leathermeta,args[0]));
-                            return true;
+                            break;
                         }else{
                             if (args.length<4){
                                 int RED;
@@ -296,14 +296,14 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                                     BLUE = Integer.parseInt(args[2]);
                                 } catch (NumberFormatException e){
                                     p.sendMessage(ChatColor.RED + "[CI] You list numbers as a RGB value.");
-                                    return true;
+                                    return false;
                                 }
                                 Color color2 = (Color.fromRGB(RED,GREEN,BLUE));
                                 leathermeta.setColor(color2);
                                 Leatheritem.setItemMeta(leathermeta);
                             }else{
                                 p.sendMessage(ChatColor.RED + "[CI] You specify either a hex or a set of RGB values.");
-                                return true;
+                                return false;
                             }
                         }
                         break;
