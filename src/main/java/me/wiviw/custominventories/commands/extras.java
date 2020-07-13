@@ -2,7 +2,13 @@ package me.wiviw.custominventories.commands;
 
 import com.nametagedit.plugin.NametagCommand;
 import com.nametagedit.plugin.NametagEdit;
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTCompoundList;
+import de.tr7zw.nbtapi.NBTItem;
+import de.tr7zw.nbtapi.NBTListCompound;
 import net.minecraft.server.v1_8_R3.EntityLiving;
+import net.minecraft.server.v1_8_R3.NBTTagList;
+import net.minecraft.server.v1_8_R3.NBTTagString;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -121,29 +127,52 @@ public class extras implements CommandExecutor {
                 p.sendMessage((char) 167 + "f&5 = " + (char) 167 + "5Dark Purple       " + (char) 167 + "f&d = " + (char) 167 + "dLight Purple");
                 p.sendMessage((char) 167 + "f&6 = " + (char) 167 + "6Gold                    " + (char) 167 + "f&e = " + (char) 167 + "eYellow");
                 p.sendMessage((char) 167 + "f&7 = " + (char) 167 + "7Gray                   " + (char) 167 + "f&f = " + (char) 167 + "fWhite");
-                p.sendMessage((char) 167 + "f&k = " + (char) 167 + "kMagic" + (char) 167  + "r                  " + (char) 167 + "f&n = " + (char) 167 + "nUnderline");
+                p.sendMessage((char) 167 + "f&k = " + (char) 167 + "kMagic" + (char) 167 + "r                  " + (char) 167 + "f&n = " + (char) 167 + "nUnderline");
                 p.sendMessage((char) 167 + "f&l = " + (char) 167 + "lBold                 " + (char) 167 + "f&o = " + (char) 167 + "oItalic");
-                p.sendMessage((char) 167 + "f&m = " + (char) 167 + "mStrikeThrough" + (char) 167  + "r   " + (char) 167 + "f&r = " + (char) 167 + "rReset");
+                p.sendMessage((char) 167 + "f&m = " + (char) 167 + "mStrikeThrough" + (char) 167 + "r   " + (char) 167 + "f&r = " + (char) 167 + "rReset");
                 break;
             case "head":
-                if (args.length<1){
+                if (args.length < 1) {
                     p.sendMessage(ChatColor.RED + "[CI] Specify a name.");
                     return false;
+                }
+                int firstOpen = getFirstOpenInventorySlot(p.getInventory());
+                if (firstOpen == -1) {
+                    p.sendMessage(ChatColor.RED + "[CI] Make sure your inventory is open.");
+                    return false;
+                }
+                if (args[0].equals("GoldenHead")) {
+                    ItemStack PlayerHead = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+                    //ItemMeta PlayerHeadMeta = PlayerHead.getItemMeta();
+                    //PlayerHeadMeta.setDisplayName("Testing Gheads");
+                    //PlayerHead.setItemMeta(PlayerHeadMeta);
+                    NBTItem nbti = new NBTItem(PlayerHead);
+                    NBTCompound SkullOwner = nbti.addCompound("SkullOwner");
+                    NBTCompound Properties = SkullOwner.addCompound("Properties");
+                    NBTCompoundList textures = Properties.getCompoundList("textures");
+                    NBTCompound textureValueGhead = textures.addCompound();
+                    textureValueGhead.setString("Value", "eyJ0aW1lc3RhbXAiOjE0ODUwMjM0NDEyNzAsInByb2ZpbGVJZCI6ImRhNDk4YWM0ZTkzNzRlNWNiNjEyN2IzODA4NTU3OTgzIiwicHJvZmlsZU5hbWUiOiJOaXRyb2hvbGljXzIiLCJzaWduYXR1cmVSZXF1aXJlZCI6dHJ1ZSwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2Y5MzdlMWM0NWJiOGRhMjliMmM1NjRkZDlhN2RhNzgwZGQyZmU1NDQ2OGE1ZGZiNDExM2I0ZmY2NThmMDQzZTEifX19");
+                    SkullOwner.setString("Id", "d994a84b-1494-4395-8f0b-99de993c288a");
+                    SkullOwner.setString("Name", "§d994a84b-1494-4395-8f0b-99de993c288a");
+                    ItemStack finalStack = nbti.getItem();
+                    p.getInventory().setItem(firstOpen, finalStack);
+                    return true;
                 }
                 ItemStack PlayerHead = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
                 SkullMeta skullmeta = (SkullMeta) PlayerHead.getItemMeta();
                 skullmeta.setOwner(args[0]);
                 PlayerHead.setItemMeta(skullmeta);
-                p.getInventory().setItem(getFirstOpenInventorySlot(p.getInventory()), PlayerHead);
+                p.getInventory().setItem(firstOpen, PlayerHead);
                 break;
             default:
                 p.sendMessage(ChatColor.RED + "[CI] " + command.getName() + " is not a command.");
         }
         return true;
     }
-    public static int getFirstOpenInventorySlot(Inventory inventory){
-        for (int i = 0; i<inventory.getSize(); i++){
-            if (inventory.getItem(i)==null){
+
+    public static int getFirstOpenInventorySlot(Inventory inventory) {
+        for (int i = 0; i < inventory.getSize(); i++) {
+            if (inventory.getItem(i) == null) {
                 return i;
             }
         }
