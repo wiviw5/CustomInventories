@@ -214,58 +214,6 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         break;
                 }
                 break;
-            case "toggleunbreakable":
-                meta.spigot().setUnbreakable(!item.getItemMeta().spigot().isUnbreakable());
-                item.setItemMeta(meta);
-                break;
-            case "togglehideenchants":
-                if (meta.hasItemFlag(ItemFlag.HIDE_ENCHANTS)) {
-                    meta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
-                } else {
-                    meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                }
-                item.setItemMeta(meta);
-                break;
-            case "togglehideattributes":
-                if (meta.hasItemFlag(ItemFlag.HIDE_ATTRIBUTES)) {
-                    meta.removeItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-                } else {
-                    meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-                }
-                item.setItemMeta(meta);
-                break;
-            case "togglehideunbreakable":
-                if (meta.hasItemFlag(ItemFlag.HIDE_UNBREAKABLE)) {
-                    meta.removeItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-                } else {
-                    meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-                }
-                item.setItemMeta(meta);
-                break;
-            case "togglehideplacedon":
-                if (meta.hasItemFlag(ItemFlag.HIDE_PLACED_ON)) {
-                    meta.removeItemFlags(ItemFlag.HIDE_PLACED_ON);
-                } else {
-                    meta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
-                }
-                item.setItemMeta(meta);
-                break;
-            case "togglehidedestroys":
-                if (meta.hasItemFlag(ItemFlag.HIDE_DESTROYS)) {
-                    meta.removeItemFlags(ItemFlag.HIDE_DESTROYS);
-                } else {
-                    meta.addItemFlags(ItemFlag.HIDE_DESTROYS);
-                }
-                item.setItemMeta(meta);
-                break;
-            case "togglehidepotions":
-                if (meta.hasItemFlag(ItemFlag.HIDE_POTION_EFFECTS)) {
-                    meta.removeItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-                } else {
-                    meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-                }
-                item.setItemMeta(meta);
-                break;
             case "colorleather":
                 if (args.length<1){
                     p.sendMessage(ChatColor.RED + "[CI] Specify a hex color or a RGB value.");

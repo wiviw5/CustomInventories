@@ -24,20 +24,8 @@ commands:
     description: Renames an item.
   relore:
     description: Relores an item.
-  toggleunbreakable:
-    description: Toggles on and off Unbreakable.
-  togglehideenchants:
-    description: Toggles on and off Enchantments.
-  togglehideunbreakable:
-    description: Toggles on and off Unbreakable tag.
-  togglehideattributes:
-    description: Toggles on and off Attributes.
-  togglehideplacedon:
-    description: Toggles on and off Place On.
-  togglehidedestroys:
-    description: Toggles on and off Destroys.
-  togglehidepotions:
-    description: Toggles on and off Potions.
+  toggleextras:
+    description: Toggles many diffrent aspects.
   particletrails:
     description: Particle Trails.
   colorleather:
