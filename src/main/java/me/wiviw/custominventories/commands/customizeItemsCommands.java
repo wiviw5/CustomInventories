@@ -71,7 +71,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                 break;
             case "relore":
                 if (args.length <= 0) {
-                    p.sendMessage(ChatColor.RED + "[CI] You must specify lore to be added, For Blank lines: \"blank\"");
+                    p.sendMessage(ChatColor.RED + "[CI] Not a valid type of lore customization, Options: add, set, remove, insert, list");
                     return false;
                 } // Check for if they did not include any args
                 List<String> lore;
@@ -92,14 +92,14 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                             break;
                         }// Removing All lines of lore on an item
                         if (lore.isEmpty()) {
-                            p.sendMessage(ChatColor.RED + "[CI] You cannot use remove if the item doesn't have lore!");
+                            p.sendMessage(ChatColor.RED + "[CI] You cannot remove lore from a item that has no lore!");
                             return false;
                         } //Catches for stuff without lore
                         int specified;
                         try {
                             specified = Integer.parseInt(args[1]);
                         } catch (NumberFormatException NFE) {
-                            p.sendMessage(ChatColor.RED + "[CI] You can't put a letter there...");
+                            p.sendMessage(ChatColor.RED + "[CI] You must specify what item line you would like deleted.");
                             return false;
                         }
                         specified--;
@@ -110,7 +110,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                             return false;
                         } //Catches for stuff out of bounds
                         if (specified < 0) {
-                            p.sendMessage(ChatColor.RED + "[CI] You can't remove a negative lore line?");
+                            p.sendMessage(ChatColor.RED + "[CI] You can't remove a negative lore line.");
                             return false;
                         }
                         lore.remove(specified);
@@ -130,18 +130,18 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         break;
                     case "set": {
                         if (lore.isEmpty()) {
-                            p.sendMessage(ChatColor.RED + "[CI] You cannot use set if the item doesn't have lore!");
+                            p.sendMessage(ChatColor.RED + "[CI] You cannot set lore from a item that has no lore!");
                             return false;
                         } //Catches for stuff without lore
                         if (args.length <= 1) {
-                            p.sendMessage(ChatColor.RED + "[CI] You must specify a line to set!");
+                            p.sendMessage(ChatColor.RED + "[CI] You must specify what item line you would like set.");
                             return false;
                         }
                         int specified;
                         try {
                             specified = Integer.parseInt(args[1]);
                         } catch (NumberFormatException NFE) {
-                            p.sendMessage(ChatColor.RED + "[CI] You can't put a letter there...");
+                            p.sendMessage(ChatColor.RED + "[CI] You must specify what item line you would like deleted.");
                             return false;
                         }
                         specified--;
@@ -152,7 +152,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                             return false;
                         } //Catches for stuff out of bounds
                         if (specified < 0) {
-                            p.sendMessage(ChatColor.RED + "[CI] You can't set a negative lore line?");
+                            p.sendMessage(ChatColor.RED + "[CI] You can't set a negative lore line.");
                             return false;
                         }
                         if (args.length <= 2) {
@@ -268,7 +268,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                 break;
             case "colorleather":
                 if (args.length<1){
-                    p.sendMessage(ChatColor.RED + "[CI] Specify a hex color.");
+                    p.sendMessage(ChatColor.RED + "[CI] Specify a hex color or a RGB value.");
                     return false;
                 }
                 switch (item.getType()) {
@@ -305,7 +305,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         }
                         break;
                     default:
-                        p.sendMessage(ChatColor.RED + "[CI] You must be holding leather.");
+                        p.sendMessage(ChatColor.RED + "[CI] You must be holding a leather item.");
                         break;
                 }
                 break;

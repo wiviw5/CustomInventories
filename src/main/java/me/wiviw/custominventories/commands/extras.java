@@ -37,7 +37,6 @@ public class extras implements CommandExecutor {
             return true;
         }
         Player p = (Player) sender;
-        ItemMeta meta = p.getInventory().getItemInHand().getItemMeta();
         switch (command.getName()) {
             case "sethealth":
                 if (args.length < 2) {
@@ -143,9 +142,6 @@ public class extras implements CommandExecutor {
                 }
                 if (args[0].equals("GoldenHead")) {
                     ItemStack PlayerHead = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
-                    //ItemMeta PlayerHeadMeta = PlayerHead.getItemMeta();
-                    //PlayerHeadMeta.setDisplayName("Testing Gheads");
-                    //PlayerHead.setItemMeta(PlayerHeadMeta);
                     NBTItem nbti = new NBTItem(PlayerHead);
                     NBTCompound SkullOwner = nbti.addCompound("SkullOwner");
                     NBTCompound Properties = SkullOwner.addCompound("Properties");
