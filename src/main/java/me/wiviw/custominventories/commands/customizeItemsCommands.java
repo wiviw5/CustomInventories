@@ -1,9 +1,6 @@
 package me.wiviw.custominventories.commands;
 
-import de.tr7zw.nbtapi.NBTCompound;
-import de.tr7zw.nbtapi.NBTCompoundList;
-import de.tr7zw.nbtapi.NBTItem;
-import me.wiviw.custominventories.Glow;
+import me.wiviw.custominventories.utilities.Glow;
 import net.md_5.bungee.api.chat.*;
 
 import java.util.ArrayList;
@@ -16,12 +13,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 
 public class customizeItemsCommands implements CommandExecutor { //Todo Add TabExectutor and tab autocomplete for these commands.
     public static String colorize(String str) {

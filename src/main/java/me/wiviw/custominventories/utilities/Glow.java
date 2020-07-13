@@ -1,4 +1,4 @@
-package me.wiviw.custominventories;
+package me.wiviw.custominventories.utilities;
 
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
