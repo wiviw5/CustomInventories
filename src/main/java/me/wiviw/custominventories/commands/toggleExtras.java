@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class toggleExtras implements TabExecutor {
@@ -95,7 +96,20 @@ public class toggleExtras implements TabExecutor {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
-        return null;
+    public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
+        List<String> tabComplete = new ArrayList<>();
+        tabComplete.add("unbreakable");
+        tabComplete.add("hideenchants");
+        tabComplete.add("hideattributes");
+        tabComplete.add("hideunbreakable");
+        tabComplete.add("hideplacedon");
+        tabComplete.add("hidedestroys");
+        tabComplete.add("hidepotions");
+        if (args.length<=0){
+            return tabComplete;
+        }else{
+            tabComplete.removeIf(tabs -> !tabs.startsWith(args[0]));
+            return tabComplete;
+        }
     }
 }
