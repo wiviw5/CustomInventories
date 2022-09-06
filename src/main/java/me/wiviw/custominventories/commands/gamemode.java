@@ -22,11 +22,11 @@ public class gamemode implements CommandExecutor {
         } //Todo Update Op Check format
         Player p = (Player) sender;
         if (args.length > 0) {
-            if (Bukkit.getPlayer(args[0]) != null){
+            if (Bukkit.getPlayer(args[0]) != null) {
                 gamemodeChange(command.getName(), Bukkit.getPlayer(args[0]));
             }
         } else {
-            gamemodeChange(command.getName(),p);
+            gamemodeChange(command.getName(), p);
         }
         return true;
     }

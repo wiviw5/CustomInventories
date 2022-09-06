@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -31,12 +32,12 @@ public class toggleExtras implements TabExecutor {
             return false;
         } //Null check
         ItemMeta meta = item.getItemMeta();
-        if (args.length<=0){
+        if (args.length <= 0) {
             p.sendMessage(ChatColor.RED + "[CI] Specify your action: unbreakable, hideenchants, hideattributes, hideunbreakable, hideplacedon, hidedestroys, hidepotions.");
             return false;
         }
         String choice = args[0];
-        switch(choice) {
+        switch (choice) {
             case "unbreakable":
                 meta.spigot().setUnbreakable(!item.getItemMeta().spigot().isUnbreakable());
                 item.setItemMeta(meta);
@@ -105,9 +106,9 @@ public class toggleExtras implements TabExecutor {
         tabComplete.add("hideplacedon");
         tabComplete.add("hidedestroys");
         tabComplete.add("hidepotions");
-        if (args.length<=0){
+        if (args.length <= 0) {
             return tabComplete;
-        }else{
+        } else {
             tabComplete.removeIf(tabs -> !tabs.startsWith(args[0]));
             return tabComplete;
         }

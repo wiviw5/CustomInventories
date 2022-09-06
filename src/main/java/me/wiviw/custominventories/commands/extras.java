@@ -1,14 +1,9 @@
 package me.wiviw.custominventories.commands;
 
-import com.nametagedit.plugin.NametagCommand;
-import com.nametagedit.plugin.NametagEdit;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTCompoundList;
 import de.tr7zw.nbtapi.NBTItem;
-import de.tr7zw.nbtapi.NBTListCompound;
 import net.minecraft.server.v1_8_R3.EntityLiving;
-import net.minecraft.server.v1_8_R3.NBTTagList;
-import net.minecraft.server.v1_8_R3.NBTTagString;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -19,7 +14,6 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Arrays;
@@ -47,7 +41,7 @@ public class extras implements CommandExecutor {
                 try {
                     Value = Double.parseDouble(args[1]);
                 } catch (Exception e) {
-                    p.sendMessage(ChatColor.RED + "[CI] Specify your Value of hunger");
+                    p.sendMessage(ChatColor.RED + "[CI] Specify your Value of HealthType");
                     return false;
                 }
                 EntityLiving cp = ((CraftPlayer) p.getPlayer()).getHandle();
@@ -102,6 +96,8 @@ public class extras implements CommandExecutor {
                 p.openInventory(inv);
                 break;
             case "title":
+
+                /*
                 if (!(args.length > 1)) {
                     p.sendMessage(ChatColor.RED + "[CI] Specify Title then type nl\\ and subtitle.");
                     return false;
@@ -116,6 +112,9 @@ public class extras implements CommandExecutor {
                     p.sendMessage(ChatColor.RED + "[CI] Include nl\\ in your message to separate the titles.");
                     return false;
                 }
+
+                 */
+                p.sendMessage(ChatColor.RED + "[CI] Currently Disabled.");
                 break;
             case "colorcodes":
                 p.sendMessage((char) 167 + "f&0 = " + (char) 167 + "0Black                  " + (char) 167 + "f&8 = " + (char) 167 + "8Dark Gray");
@@ -159,6 +158,39 @@ public class extras implements CommandExecutor {
                 skullmeta.setOwner(args[0]);
                 PlayerHead.setItemMeta(skullmeta);
                 p.getInventory().setItem(firstOpen, PlayerHead);
+                break;
+            case "setlevel":
+                if (args.length < 1) {
+                    p.sendMessage(ChatColor.RED + "[CI] Specify an option: level, exp.");
+                    return false;
+                }
+                if (args[0].equals("level")) {
+                    if (args.length < 2) {
+                        p.sendMessage(ChatColor.RED + "[CI] Specify a number.");
+                        return false;
+                    }
+                    int x;
+                    try {
+                        x = Integer.parseInt(args[1]);
+                    } catch (NumberFormatException e) {
+                        p.sendMessage(ChatColor.RED + "[CI] Specify a number.");
+                        return false;
+                    }
+                    p.setLevel(x);
+                } else if (args[0].equals("exp")) {
+                    if (args.length < 2) {
+                        p.sendMessage(ChatColor.RED + "[CI] Specify a float from 1-0 (ex: 0.99f).");
+                        return false;
+                    }
+                    float x;
+                    try {
+                        x = Float.parseFloat(args[1]);
+                    } catch (NumberFormatException e) {
+                        p.sendMessage(ChatColor.RED + "[CI] Specify a float from 1-0 (ex: 0.99f).");
+                        return false;
+                    }
+                    p.setExp(x);
+                }
                 break;
             default:
                 p.sendMessage(ChatColor.RED + "[CI] " + command.getName() + " is not a command.");

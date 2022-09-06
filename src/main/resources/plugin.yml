@@ -2,8 +2,8 @@ name: CustomInventories
 version: ${project.version}
 main: me.wiviw.custominventories.CustomInventories
 load: STARTUP
-depend: [BountifulAPI]
-authors: [WiViW]
+depend: [ BountifulAPI ]
+authors: [ WiViW ]
 description: Custom Inventories and other fun features.
 commands:
   gm:
@@ -40,3 +40,5 @@ commands:
     description: A chat feature for all the color descriptions you would ever need!
   head:
     description: Gives you a head.
+  setlevel:
+    description: Sets Certain Aspects about your xp bar.

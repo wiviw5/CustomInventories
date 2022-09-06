@@ -85,11 +85,6 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.nametagedit</groupId>
-            <artifactId>nametagedit</artifactId>
-            <version>4.1.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.comphenix.protocol</groupId>
             <artifactId>ProtocolLib</artifactId>
             <version>4.5.0</version>
@@ -103,6 +98,8 @@
             <groupId>com.connorlinfoot</groupId>
             <artifactId>bountifulapi</artifactId>
             <version>1.6.4</version>
+            <scope>system</scope>
+            <systemPath>D:/Coding/Java/CustomInventories/Other/Dependencies V3/BountifulAPI-1.6.4.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>de.tr7zw</groupId>

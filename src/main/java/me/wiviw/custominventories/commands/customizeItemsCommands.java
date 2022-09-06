@@ -215,7 +215,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                 }
                 break;
             case "colorleather":
-                if (args.length<1){
+                if (args.length < 1) {
                     p.sendMessage(ChatColor.RED + "[CI] Specify a hex color or a RGB value.");
                     return false;
                 }
@@ -227,11 +227,11 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         ItemStack Leatheritem = new ItemStack(item);
                         LeatherArmorMeta leathermeta = (LeatherArmorMeta) Leatheritem.getItemMeta();
                         Leatheritem.setItemMeta(meta);
-                        if (args[0].startsWith("#")){
-                            Leatheritem.setItemMeta(hex2Rgb(leathermeta,args[0]));
+                        if (args[0].startsWith("#")) {
+                            Leatheritem.setItemMeta(hex2Rgb(leathermeta, args[0]));
                             break;
-                        }else{
-                            if (args.length<4){
+                        } else {
+                            if (args.length < 4) {
                                 int RED;
                                 int GREEN;
                                 int BLUE;
@@ -239,14 +239,14 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                                     RED = Integer.parseInt(args[0]);
                                     GREEN = Integer.parseInt(args[1]);
                                     BLUE = Integer.parseInt(args[2]);
-                                } catch (NumberFormatException e){
+                                } catch (NumberFormatException e) {
                                     p.sendMessage(ChatColor.RED + "[CI] You list numbers as a RGB value.");
                                     return false;
                                 }
-                                Color color2 = (Color.fromRGB(RED,GREEN,BLUE));
+                                Color color2 = (Color.fromRGB(RED, GREEN, BLUE));
                                 leathermeta.setColor(color2);
                                 Leatheritem.setItemMeta(leathermeta);
-                            }else{
+                            } else {
                                 p.sendMessage(ChatColor.RED + "[CI] You specify either a hex or a set of RGB values.");
                                 return false;
                             }
@@ -259,9 +259,9 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                 break;
             case "glowing":
                 Glow glow = new Glow();
-                if (item.containsEnchantment(glow)){
+                if (item.containsEnchantment(glow)) {
                     item.removeEnchantment(glow);
-                }else{
+                } else {
                     item.addUnsafeEnchantment(glow, 1);
                 }
                 break;
@@ -270,12 +270,13 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
         p.updateInventory();
         return true;
     }
+
     public static ItemMeta hex2Rgb(ItemMeta hex2rgbmeta, String colorStr) {
-        int red = Integer.valueOf(colorStr.substring( 1, 3 ), 16 );
-        int green = Integer.valueOf(colorStr.substring( 3, 5 ), 16 );
-        int blue = Integer.valueOf(colorStr.substring( 5, 7 ), 16 );
+        int red = Integer.valueOf(colorStr.substring(1, 3), 16);
+        int green = Integer.valueOf(colorStr.substring(3, 5), 16);
+        int blue = Integer.valueOf(colorStr.substring(5, 7), 16);
         LeatherArmorMeta meta1 = (LeatherArmorMeta) hex2rgbmeta;
-        Color color2 = (Color.fromRGB(red,green,blue));
+        Color color2 = (Color.fromRGB(red, green, blue));
         meta1.setColor(color2);
         return meta1;
     }
