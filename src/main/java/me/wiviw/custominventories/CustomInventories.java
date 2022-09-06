@@ -34,13 +34,7 @@ public final class CustomInventories extends JavaPlugin {
         getCommand("returntextall").setExecutor(new textreturn());
         getCommand("rename").setExecutor(new customizeItemsCommands());
         getCommand("relore").setExecutor(new customizeItemsCommands());
-        getCommand("toggleunbreakable").setExecutor(new customizeItemsCommands());
-        getCommand("togglehideunbreakable").setExecutor(new customizeItemsCommands());
-        getCommand("togglehideenchants").setExecutor(new customizeItemsCommands());
-        getCommand("togglehideattributes").setExecutor(new customizeItemsCommands());
-        getCommand("togglehideplacedon").setExecutor(new customizeItemsCommands());
-        getCommand("togglehidedestroys").setExecutor(new customizeItemsCommands());
-        getCommand("togglehidepotions").setExecutor(new customizeItemsCommands());
+        getCommand("toggleextras").setExecutor(new toggleExtras());
         getCommand("colorleather").setExecutor(new customizeItemsCommands());
         getCommand("glowing").setExecutor(new customizeItemsCommands());
         getCommand("head").setExecutor(new extras());
@@ -48,6 +42,7 @@ public final class CustomInventories extends JavaPlugin {
         getCommand("sethealth").setExecutor(new extras());
         getCommand("inventory").setExecutor(new extras());
         getCommand("colorcodes").setExecutor(new extras());
+        getCommand("setlevel").setExecutor(new extras());
     }
 
     public static void PluginFolders(CustomInventories p) {
