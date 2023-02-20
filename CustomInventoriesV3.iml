@@ -21,15 +21,31 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/BountifulAPI-1.6.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: com.nametagedit:nametagedit:4.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.comphenix.protocol:ProtocolLib:4.5.0" level="project" />
     <orderEntry type="library" name="Maven: cglib:cglib-nodep:3.2.5" level="project" />
     <orderEntry type="library" name="Maven: com.comphenix.executors:BukkitExecutors:1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.connorlinfoot:bountifulapi:1.6.4" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.connorlinfoot:bountifulapi:1.6.4">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../Other/Dependencies V3/BountifulAPI-1.6.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: de.tr7zw:item-nbt-api-plugin:2.2.0" level="project" />
     <orderEntry type="library" name="Maven: de.tr7zw:item-nbt-api:2.2.0" level="project" />
     <orderEntry type="library" name="Maven: de.tr7zw:nbt-injector:2.2.0" level="project" />

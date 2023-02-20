@@ -229,6 +229,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                         Leatheritem.setItemMeta(meta);
                         if (args[0].startsWith("#")) {
                             Leatheritem.setItemMeta(hex2Rgb(leathermeta, args[0]));
+                            item.setItemMeta(leathermeta);
                             break;
                         } else {
                             if (args.length < 4) {
@@ -246,6 +247,7 @@ public class customizeItemsCommands implements CommandExecutor { //Todo Add TabE
                                 Color color2 = (Color.fromRGB(RED, GREEN, BLUE));
                                 leathermeta.setColor(color2);
                                 Leatheritem.setItemMeta(leathermeta);
+                                item.setItemMeta(leathermeta);
                             } else {
                                 p.sendMessage(ChatColor.RED + "[CI] You specify either a hex or a set of RGB values.");
                                 return false;
